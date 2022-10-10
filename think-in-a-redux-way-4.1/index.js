@@ -1,4 +1,5 @@
 const {createStore, applyMiddleware } = require('redux');
+const thunk = require('redux-thunk');
 const { TODO_ADDED, TODO_FETCH, TODO_LOAD } = require('./actionType');
 const { fetchTodos } = require('./function');
 const { delayMiddleware, fetchTodoMiddleware } = require('./middlewares');
@@ -34,7 +35,7 @@ const reducer = (state=initialState, action) => {
 }
 
 
-const store = createStore(reducer, applyMiddleware( delayMiddleware, fetchTodoMiddleware ))
+const store = createStore(reducer, applyMiddleware( thunk.default ))
 
 store.subscribe( () => {
     console.log(store.getState());
