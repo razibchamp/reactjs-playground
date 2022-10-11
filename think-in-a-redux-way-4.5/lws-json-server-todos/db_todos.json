@@ -41,28 +41,8 @@
       "id": 7
     },
     {
-      "text": "Test",
-      "completed": false,
-      "id": 8
-    },
-    {
-      "text": "hdjhdjhdjsdh",
-      "completed": false,
-      "id": 9
-    },
-    {
-      "text": "hellow",
-      "completed": false,
-      "id": 10
-    },
-    {
-      "text": "llllllll",
-      "completed": false,
-      "id": 11
-    },
-    {
       "text": "learning typescript",
-      "completed": false,
+      "completed": true,
       "id": 12
     }
   ]
