@@ -7,7 +7,7 @@ export default class Title extends React.Component {
         super(props)
 
         this.state = {
-            lastName : 'Shuvo',
+            lastName : props.lastName,
             fullName : props.title
         }
     }
@@ -33,12 +33,14 @@ export default class Title extends React.Component {
     
     render() {
         const {fullName} = this.state
+        const {gender} = this.props
+        const honorific = gender === 'male' ? 'Mr. ' : 'Mrs. '
         console.log('re-rendering title')
         return (
             <>
-                <h1>This is a title updated {fullName}</h1>
+                <h1>Hello {honorific + fullName}</h1>
                 <Clock />
-                <button onClick={this.changeName}>Change Name</button>
+                <button onClick={this.changeName}>Show Full Name</button>
             </>
         )
     }
