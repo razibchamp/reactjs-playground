@@ -1,4 +1,5 @@
 import React from 'react';
+import Clock from './Clock';
 
 export default class Title extends React.Component {
 
@@ -6,30 +7,25 @@ export default class Title extends React.Component {
         super(props)
 
         this.state = {
-            date : new Date(),
             lastName : 'Shuvo',
             fullName : props.title
         }
     }
 
-    componentDidMount() {
-        this.clockTimer = setInterval(() => {
-            this.setState(() => {
-                return {
-                    date : new Date()
-                }
-            })
-        }, 1000);
-    }
+    shouldComponentUpdate(nextProps, nextState) {
+        const { fullName : currentFullName } = nextState
+        const { fullName : prevFullName } = this.state
+        if ( currentFullName === prevFullName ) {
+            return false;
+        }
 
-    componentWillUnmount() {
-        clearInterval(this.clockTimer);
+        return true;
     }
 
     changeName = () => {
         this.setState((prevState) => {
             return {
-                fullName : prevState.fullName + ' ' + prevState.lastName,
+                fullName : prevState.fullName + (prevState.lastName ? ' ' + prevState.lastName : ''),
                 lastName : ''
             }
         })
@@ -37,10 +33,11 @@ export default class Title extends React.Component {
     
     render() {
         const {fullName} = this.state
+        console.log('re-rendering title')
         return (
             <>
                 <h1>This is a title updated {fullName}</h1>
-                <h2>Current time : {this.state.date.toLocaleTimeString()}</h2>
+                <Clock />
                 <button onClick={this.changeName}>Change Name</button>
             </>
         )
