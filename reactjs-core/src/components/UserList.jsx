@@ -17,24 +17,28 @@ export default class UserList extends React.Component {
         ]
     }
 
-    shouldComponentUpdate(prevProps, prevState) {
-        const {users} = this.state
-        const {users : oldUsers} = prevState
-        if (users === oldUsers) {
-            return false;
-        }
-        return true;
+    handleChange = (user, index) => {
+        this.setState((prevState) => {
+            const users = [
+                    ...prevState.users
+                ]
+
+            users[index].firstName = user.fullName
+            return users
+        }, () => {
+            this.props.handleUserNameChange(this.state.users)
+        })
     }
 
     render () {
-        console.log(this.state)
         return (
                 <>
-                    {this.state.users.map( (user) => (
+                    {this.state.users.map( (user, index) => (
                         <Title title={user.firstName}
                             lastName={user.lastName}
                             gender={user.gender}
-                            key={Math.random()}
+                            key={index}
+                            handleChange={ (user) => this.handleChange(user, index)}
                         />
                     ))}
                 </>

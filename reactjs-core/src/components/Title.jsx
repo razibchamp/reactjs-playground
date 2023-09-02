@@ -20,6 +20,8 @@ export default class Title extends React.Component {
             return false;
         }
 
+        
+
         return true;
     }
 
@@ -29,6 +31,8 @@ export default class Title extends React.Component {
                 fullName : prevState.fullName + (prevState.lastName ? ' ' + prevState.lastName : ''),
                 lastName : ''
             }
+        }, () => {
+            this.props.handleChange(this.state)
         })
     }
 
@@ -38,6 +42,8 @@ export default class Title extends React.Component {
             fullName: this.state.fullNameInput,
             fullNameInput: '',
             lastName: ''
+        }, () => {
+            this.props.handleChange(this.state)
         })
     }
     
