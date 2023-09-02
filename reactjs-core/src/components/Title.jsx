@@ -36,6 +36,7 @@ export default class Title extends React.Component {
         e.preventDefault()
         this.setState({
             fullName: this.state.fullNameInput,
+            fullNameInput: '',
             lastName: ''
         })
     }
