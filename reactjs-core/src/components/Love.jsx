@@ -1,36 +1,20 @@
+import withLove  from "./withLove";
+import UserList from './UserList'
 import React from "react";
-import UserList from "./UserList";
 
-export default class Love extends React.Component {
-    state = {
-        users : [],
-        lovestring : ''
-    }
-
-    handleUserNameChange = (UserList) => {
-        console.log('love', UserList)
-        this.setState({
-            users : UserList
-        }, this.buildLoveString)
-    }
-
-    buildLoveString = () => {
-        let lovestring = '🧡'
-        const {users} = this.state
-        const prefix = users[0].firstName.toUpperCase()
-        const suffix = users[1].firstName.toUpperCase()
-        lovestring = [prefix, lovestring, suffix].join(' ')
-        this.setState({lovestring})
-    }
+class LoveHandle extends React.Component {
 
     render () {
-        const {lovestring} = this.state
+        const {lovestring} = this.props
         return (
             <>
-                <UserList handleUserNameChange={this.handleUserNameChange}/>
+                <UserList handleUserNameChange={this.props.handleUserNameChange}/>
                 <br/>
                 <h1 style={{backgroundColor:'pink'}} >{lovestring}</h1>
             </>
         )
     }
 }
+
+const Love = withLove(LoveHandle);
+export default Love;
