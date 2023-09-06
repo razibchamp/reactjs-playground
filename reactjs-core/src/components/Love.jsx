@@ -8,15 +8,16 @@ export default class Love extends React.Component {
         return (
             <>
                 <LovePaint 
-                    render = {(handleUserNameChange, {lovestring}) => {
-                        return (
-                        <div>
-                            <UserList handleUserNameChange={ (users) => handleUserNameChange(users)}/>
-                            <br/>
-                            <h1 style={{backgroundColor:'pink'}} >{lovestring}</h1>
-                        </div>)
-                    }}
-                />
+                >
+                    {(handleUserNameChange, {lovestring}) => (
+                            <div>
+                                <UserList handleUserNameChange={ (users) => handleUserNameChange(users)}/>
+                                <br/>
+                                <h1 style={{backgroundColor:'pink'}} >{lovestring}</h1>
+                            </div>
+                        )
+                    }
+                </LovePaint>
             </>
         )
     }

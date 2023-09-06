@@ -26,7 +26,7 @@ export default class LovePaint extends React.Component {
     }
 
     render () {
-        const {render} = this.props
-        return render(this.handleUserNameChange, this.state);
+        const {children} = this.props
+        return children(this.handleUserNameChange, this.state);
     }
 }
