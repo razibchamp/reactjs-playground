@@ -1,20 +1,23 @@
-import withLove  from "./withLove";
 import UserList from './UserList'
 import React from "react";
+import LovePaint from "./LovePaint";
 
-class LoveHandle extends React.Component {
+export default class Love extends React.Component {
 
     render () {
-        const {lovestring} = this.props
         return (
             <>
-                <UserList handleUserNameChange={this.props.handleUserNameChange}/>
-                <br/>
-                <h1 style={{backgroundColor:'pink'}} >{lovestring}</h1>
+                <LovePaint 
+                    render = {(handleUserNameChange, {lovestring}) => {
+                        return (
+                        <div>
+                            <UserList handleUserNameChange={ (users) => handleUserNameChange(users)}/>
+                            <br/>
+                            <h1 style={{backgroundColor:'pink'}} >{lovestring}</h1>
+                        </div>)
+                    }}
+                />
             </>
         )
     }
 }
-
-const Love = withLove(LoveHandle);
-export default Love;
