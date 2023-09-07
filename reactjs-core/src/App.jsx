@@ -3,9 +3,11 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Love from './components/Love'
+import { UserContext } from './context/UserContext'
 
 function App() {
   const [count, setCount] = useState(0)
+  
   return (
     <>
       <div>
@@ -17,9 +19,13 @@ function App() {
         </a>
       </div>
       <h1>Vite + React </h1>
-      <Love />
+      <UserContext.Provider value='Love is not painted'>
+        <Love />
+      </UserContext.Provider>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={() => {
+            setCount((count) => count + 1)
+          }}>
           count is {count}
         </button>
         <p>
