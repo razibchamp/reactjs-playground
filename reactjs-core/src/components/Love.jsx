@@ -8,15 +8,20 @@ export default class Love extends React.Component {
     static contextType = UserContext
 
     render () {
+        const {printLove, togglePrintLove} = this.context
+
         return (
             <>
-                
-                <h1>{this.context}</h1>
+
+                <h1>{printLove}</h1>
                 <LovePaint 
                 >
                     {(handleUserNameChange, {lovestring}) => (
                             <div>
-                                <UserList handleUserNameChange={ (users) => handleUserNameChange(users)}/>
+                                <UserList handleUserNameChange={ (users) => {
+                                        handleUserNameChange(users)
+                                        togglePrintLove()
+                                    }}/>
                                 <br/>
                                 <h1 style={{backgroundColor:'pink'}} >{lovestring}</h1>
                             </div>

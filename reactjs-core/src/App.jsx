@@ -7,7 +7,14 @@ import { UserContext } from './context/UserContext'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const [printLove, setPrintLove] = useState('Love is not painted')
   
+
+  const togglePrintLove = () => {
+    setPrintLove('Love is printed')
+  }
+
   return (
     <>
       <div>
@@ -19,7 +26,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React </h1>
-      <UserContext.Provider value='Love is not painted'>
+      <UserContext.Provider value={{printLove, togglePrintLove}}>
         <Love />
       </UserContext.Provider>
       <div className="card">
