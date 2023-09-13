@@ -1,34 +1,31 @@
 import UserList from './UserList'
-import React from "react";
+import { useContext } from "react";
 import LovePaint from "./LovePaint";
 import { UserContext } from '../context/UserContext';
 
-export default class Love extends React.Component {
 
-    static contextType = UserContext
+export default function Love () {
 
-    render () {
-        const {printLove, togglePrintLove} = this.context
+    const {printLove, togglePrintLove} = useContext(UserContext)
 
-        return (
-            <>
+    return (
+        <>
 
-                <h1>{printLove}</h1>
-                <LovePaint 
-                >
-                    {(handleUserNameChange, {lovestring}) => (
-                            <div>
-                                <UserList handleUserNameChange={ (users) => {
-                                        handleUserNameChange(users)
-                                        togglePrintLove()
-                                    }}/>
-                                <br/>
-                                <h1 style={{backgroundColor:'pink'}} >{lovestring}</h1>
-                            </div>
-                        )
-                    }
-                </LovePaint>
-            </>
-        )
-    }
+            <h1>{printLove}</h1>
+            <LovePaint 
+            >
+                {(handleUserNameChange, {lovestring}) => (
+                        <div>
+                            <UserList handleUserNameChange={ (users) => {
+                                    handleUserNameChange(users)
+                                    togglePrintLove()
+                                }}/>
+                            <br/>
+                            <h1 style={{backgroundColor:'pink'}} >{lovestring}</h1>
+                        </div>
+                    )
+                }
+            </LovePaint>
+        </>
+    )
 }
