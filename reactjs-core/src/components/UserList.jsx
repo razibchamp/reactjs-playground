@@ -1,9 +1,8 @@
-import React from "react";
+import { useState } from "react";
 import Title from "./Title";
 
-export default class UserList extends React.Component {
-    state = {
-        users : [
+export default function UserList ({handleUserNameChange}) {
+    const [users, setUsers] = useState([
             {
                 firstName : 'Faseeha',
                 lastName : 'Islam',
@@ -15,33 +14,30 @@ export default class UserList extends React.Component {
                 gender: 'male'
             }
         ]
-    }
+    )
 
-    handleChange = (user, index) => {
-        this.setState((prevState) => {
+    const handleChange = (user, index) => {
+        setUsers((prevState) => {
             const users = [
-                    ...prevState.users
+                    ...prevState
                 ]
 
             users[index].firstName = user.fullName
+            handleUserNameChange(users)
             return users
-        }, () => {
-            this.props.handleUserNameChange(this.state.users)
         })
     }
 
-    render () {
-        return (
-                <>
-                    {this.state.users.map( (user, index) => (
-                        <Title title={user.firstName}
-                            lastName={user.lastName}
-                            gender={user.gender}
-                            key={index}
-                            handleChange={ (user) => this.handleChange(user, index)}
-                        />
-                    ))}
-                </>
-            );
-    }
+    return (
+            <>
+                {users.map( (user, index) => (
+                    <Title title={user.firstName}
+                        lastName={user.lastName}
+                        gender={user.gender}
+                        key={index}
+                        handleChange={ (user) => handleChange(user, index)}
+                    />
+                ))}
+            </>
+        );
 }
